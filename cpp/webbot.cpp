@@ -84,6 +84,13 @@ void alarm(){
 	display_writer.write("play_sound:alarm");
 }
 
+void play_sound(string arg){
+	string cmd;
+	cmd = "play_sound:";
+	cmd += arg;
+	display_writer.write(cmd);
+}
+
 void run(){
 
 	InputReader robot_reader("input.txt");
@@ -92,6 +99,7 @@ void run(){
 	robot_reader.add_input("backwards", backwards);
 	robot_reader.add_input("stop", stop);
 	robot_reader.add_input_args("say", say);
+	robot_reader.add_input_args("play_sound", play_sound);
 	robot_reader.add_input("fart", fart);
 	robot_reader.add_input("send_message", send_message);
 	robot_reader.add_input("greet", greet);
@@ -102,7 +110,7 @@ void run(){
 	futex_manager.add_future(set_startup, 20);
 
 	while (robot_reader.poll_updates() != -1){
-		usleep(200000);
+		usleep(100000);
 		futex_manager.step();
 	}
 

@@ -40,7 +40,7 @@ $(function(){
   $('.command').bind('click', function(){
     var $t = $(this);
     if ($t.data('cmd')){
-      issue_command($t.data('cmd'));
+      issue_command($t.data('cmd'), $t.data('args')||null);
     }
     return false;
   });

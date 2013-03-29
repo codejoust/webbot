@@ -5,7 +5,7 @@
 <script src="scripts/webcontrol.js"></script>
 <script src="scripts/functions.js"></script>
 <style>
-button { display: block; padding:2px; }
+button { display: block; padding:2px; width:80px;  background:#eee;padding:4px;margin:5px; }
 </style>
 </head>
 <body>
@@ -13,12 +13,16 @@ button { display: block; padding:2px; }
 <form action="#">
   <button class="command" data-cmd="forward">Forward</button>
   <button class="command" data-cmd="backwards">Backward</button>
-  <button class="command" data-cmd="right">Turn Right</button>
-  <button class="command" data-cmd="left">Turn Left</button>
-  <button class="command" data-cmd="alarm">Turn Left</button>
+  <button class="command" data-cmd="right">Turn Left</button>
+  <button class="command" data-cmd="left">Turn Right</button>
   <button class="command" data-cmd="stop">Stop</button>
   <button class="command" data-cmd="fart">Fart</button>
   <button class="command" data-cmd="greet">Greet</button>
+
+  <button class="command" data-cmd="play_sound" data-args="alarm1">Alarm</button>
+  <button class="command" data-cmd="play_sound" data-args="tstorm">TStorm</button>
+  <button class="command" data-cmd="play_sound" data-args="fart1">Fart 1</button>
+
 </form>
 
 

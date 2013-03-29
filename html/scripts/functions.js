@@ -46,7 +46,8 @@ function play_sound(type){
 		alarm1: 'alarma.wav',
 		click: 'click.wav',
 		tstorm: 'tstorm.mp3',
-		macup: 'Startup1.wav'
+		macup: 'Startup1.wav',
+		fart1: 'fart-2.wav'
 	}
 	if (files_mapping[type]){
 		status("playing sound " + type);
