@@ -13,6 +13,7 @@ public:
 
 	};
 	void write(string input){
+		cout << "Writing file " << input << endl;
 		ofstream outfile;
 		outfile.open(filename, fstream::app);
 		outfile << input << endl;

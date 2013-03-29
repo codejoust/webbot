@@ -10,8 +10,8 @@ if (!window.opts){
 
 function issue_command(command, args){
   $status = $('#status');
-  $.post('./reciever.php', {command: command, args: args}, function(res){
-    $status.html('sent command: ' + command);
+  $.post('./reciever.php', {command: command, args: args, time: (new Date()).getTime()}, function(res){
+    $status.html('sent command: ' + JSON.stringify(res));
     setTimeout(function(){
       $status.html('');
     }, 400);
@@ -19,6 +19,9 @@ function issue_command(command, args){
 }
 
 function run_poll(){
+    if (navigator.userAgent.match(/iphone/gi)){
+    return;
+  }
   $.get('poll.php?type=' + (window.opts.poll_type || ''), function(res, succ){
     console.log('poll done: ' + succ);
     console.log('"' + res + '"');

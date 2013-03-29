@@ -5,6 +5,12 @@ function status(status){
 	},1000);
 }
 
+function alert(text){
+	$('#header').html(text).css('font-size','10px').show().animate({'font-50px': 'size'}, 1000, function(){
+		$(this).hide();
+	})
+}
+
 function flashy(){
 	$('body').css('background', '#eee');
 	setTimeout(function(){
@@ -19,15 +25,24 @@ function play_audio(url){
 		document.body.appendChild(snd);
 	}
 	snd.src = url;
+	snd.load();
+	
+	//snd.currentTime = 0;
 	snd.play();
 }
 
 function greet(text){
-	play_audio('http://translate.google.com/translate_tts?tl=en&q='+encode(text)+'&#8221');
+	//text = 'Hello-Im-' + text;
+    play_audio('http://translate.google.com/translate_tts?tl=en&q='+text);
+}
+
+function speak(text){
+	greet(text);
 }
 
 function play_sound(type){
 	var files_mapping = {
+		alarm: 'alarma.wav',
 		alarm1: 'alarma.wav',
 		click: 'click.wav',
 		tstorm: 'tstorm.mp3',
