@@ -18,7 +18,7 @@ To configure the webserver:
 * Click the Green plus icon to the right of the table
 * Type in a new table line with the host port being 8080 and guest port being 80.
 * Leave everything else blank!
-* Hit <tab>, then click "ok" (if it doesn't work on the first time click "ok" again).
+* Hit tab, then click "ok" (if it doesn't work on the first time click "ok" again).
 * You're good to go!
 
 To run: 
