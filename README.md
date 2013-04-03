@@ -7,6 +7,7 @@ Note:
 To install: 
 * First, `cd` to the directory you want to put `webbot` in.
 * `apt-get install git apache2 php5`
+* (It'll ask you your password, type your ubuntu password, then type Yes when it asks [Y/n] to intall)
 * `git clone git://github.com/codejoust/webbot.git` 
 * `cd webbot` then run `sudo install.sh`.
 
@@ -22,6 +23,7 @@ To configure the webserver:
 * You're good to go!
 
 To run: 
+* On your mac run the below command in the terminal:
 * `ifconfig | grep inet | awk '{print "http://" $2 ":8080/robot/"}' | tail -n 1` 
 * to get the URL to paste into your browser (or phone).
 * `cd` to the directory where you cloned the repo,
