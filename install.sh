@@ -1,3 +1,4 @@
 #!/bin/bash
-sudo apt-get install apache2
-cd html && ln -s /var/www/robot/
+ln -s ~/Documents/webcontrol/html /var/www/robot
+chmod 777 ./*.txt 
+
