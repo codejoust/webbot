@@ -6,7 +6,7 @@ Note:
 
 To install: 
 * First, `cd` to the directory you want to put `webbot` in.
-* `apt-get install git apache2 php5`
+* `sudo apt-get install git apache2 php5`
 * (It'll ask you your password, type your ubuntu password, then type Yes when it asks [Y/n] to intall)
 * `git clone git://github.com/codejoust/webbot.git` 
 * `cd webbot` then run `sudo ./install.sh`.
