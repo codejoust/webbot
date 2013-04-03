@@ -9,7 +9,7 @@ To install:
 * `apt-get install git apache2 php5`
 * (It'll ask you your password, type your ubuntu password, then type Yes when it asks [Y/n] to intall)
 * `git clone git://github.com/codejoust/webbot.git` 
-* `cd webbot` then run `sudo install.sh`.
+* `cd webbot` then run `sudo ./install.sh`.
 
 To configure the webserver:
 * Setup a port forwarding rule in Virtualbox
