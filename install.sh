@@ -1,4 +1,4 @@
 #!/bin/bash
-ln -s ./html /var/www/robot
+ln -s /var/www/robot ./html
 chmod 777 ./*.txt 
 
