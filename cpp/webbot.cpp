@@ -105,12 +105,14 @@ void run(){
 	robot_reader.add_input("greet", greet);
 	robot_reader.add_input("alarm", alarm);
 	robot_reader.add_input("left", turnLeft);
+	robot_reader.add_input("turn_left", turnLeft);
 	robot_reader.add_input("right", turnRight);
+	robot_reader.add_input("turn_right", turnRight);
 
 	futex_manager.add_future(set_startup, 20);
 
 	while (robot_reader.poll_updates() != -1){
-		usleep(100000);
+		usleep(10000);
 		futex_manager.step();
 	}
 

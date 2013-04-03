@@ -86,9 +86,9 @@ public:
 	}
 
 	void check_input(string input, string args){
-		if (args.size() > 0 && fn_map_args[input]){
+		if (args.size() > 0 && (fn_map_args.find(input) != fn_map_args.end())){
 			fn_map_args[input](args);
-		} else if (fn_map[input]){
+		} else if (!(fn_map.find(input) == fn_map.end())){
 			cout << "got input " << input << endl;
 			fn_map[input]();
 		}

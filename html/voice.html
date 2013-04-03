@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="scripts/webcontrol.js"></script>
+<script src="scripts/functions.js"></script>
+<style>
+button { display: block; padding:2px; width:80px;  background:#eee;padding:4px;margin:5px; }
+</style>
+<script src="scripts/webcontrol.js"></script>
+<script>
+function check_command(cmd){
+	console.log('runinng command '+cmd);
+	cmd = cmd.split(' ');
+	if (cmd.length > 1){
+		cmd.map(check_command);
+		return;
+	}
+	cmd= cmd[0].toLowerCase().replace(/[^a-z]/g,'');
+	var cmd_map = {
+		ford: 'forward',
+		forwards: 'forward',
+		forward: 'forward',
+		backwards: 'backward',
+		backward: 'backward',
+		turn: 'turn_right',
+		turns: 'turn_right',
+		left: 'turn_left',
+		right: 'turn_right',
+		stop: 'stop'
+	}
+	if (cmd_map[cmd]){
+		issue_command(cmd_map[cmd]);
+	}
+}
+var final_transcript = '';
+var recognizing = false;
+var ignore_onend;
+var start_timestamp;
+function linebreak(input){
+	return input.replace(/\n/,'<br />');
+}
+if (!('webkitSpeechRecognition' in window)) {
+  //upgrade();
+  alert('need update!');
+} else {
+  //start_button.style.display = 'inline-block';
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onstart = function() {
+    recognizing = true;
+  };
+
+  recognition.onerror = function(event) {
+    alert('Error: ' + event.error);
+  };
+
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) {
+      return;
+    }
+    //start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+    if (!final_transcript) {
+      //showInfo('info_start');
+      return;
+    }
+    //showInfo('');
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.selectNode(document.getElementById('final_span'));
+      window.getSelection().addRange(range);
+    }
+  };
+
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      upgrade();
+      return;
+    }
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+		check_command(event.results[i][0].transcript);
+      }
+    }
+    final_transcript = final_transcript;//capitalize(final_transcript);
+    final_span.innerHTML = linebreak(final_transcript);
+    interim_span.innerHTML = linebreak(interim_transcript);
+    if (final_transcript || interim_transcript) {
+      //showButtons('inline-block');
+    }
+  };
+}
+
+
+function startButton(event) {
+  if (recognizing) {
+    recognition.stop();
+    console.log('stopping recognition');
+    return;
+  }
+  final_transcript = '';
+  recognition.lang = 'en_US';
+  recognition.start();
+  ignore_onend = false;
+  final_span.innerHTML = '';
+  interim_span.innerHTML = '';
+  //start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
+  start_timestamp = event.timeStamp;
+}
+</script>
+</head>
+<body>
+
+<button onclick="startButton()">Start</button>
+
+<p id="status"></p>
+
+<div id="results">
+          <span class="final" id="final_span"></span> <span class="interim" id=
+          "interim_span"></span>
+        </div>
+
+</body>
+</html>
+
+
