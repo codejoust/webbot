@@ -1,4 +1,5 @@
 #!/bin/bash
-ln -s /var/www/robot ./html
-chmod 777 ./*.txt 
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+chmod 777 *.txt 
+cd /var/www && ln -s $DIR/html ./robot
 
