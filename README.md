@@ -23,9 +23,12 @@ To configure the webserver:
 * You're good to go!
 
 To run: 
-* On your mac run the below command in the terminal:
+* Go to: http://louise.codejoust.com/projs/webbot/url.php on your VM or Computer to get the URL to run your robot on your phone or laptop.
+* 
+* Or: On your mac run the below command in the terminal:
 * `ifconfig | grep inet | awk '{print "http://" $2 ":8080/robot/"}' | tail -n 1` 
 * to get the URL to paste into your browser (or phone).
+* Then:
 * `cd` to the directory where you cloned the repo,
 * `./bin/runner /dev/ttyS0` (or whatever serial port you're using).
 
