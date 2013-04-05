@@ -44,6 +44,15 @@ void say(string args){
 	futex_manager.add_future(dobeep, 3);
 }
 
+void take_picture(){
+	PicturePtr pic;
+	display_writer.write("status:Taking_Picture");
+	pic = robot.takePicture("jpeg", false);
+	pic->savePicture("./html/pics/robot.jpg");
+	web_writer.write("display_pic");
+	display_writer.write("display_pic");
+}
+
 void fart(){
 	Utils::play_sound("fart.wav");
 	web_writer.write("flashy");
@@ -91,6 +100,14 @@ void play_sound(string arg){
 	display_writer.write(cmd);
 }
 
+void confirmcmd(string cmd, string arg){
+	return;
+	string cmdout;
+	cmdout = "status:";
+	cmdout += cmd;
+	display_writer.write(cmdout);
+}
+
 void run(){
 
 	InputReader robot_reader("input.txt");
@@ -105,10 +122,13 @@ void run(){
 	robot_reader.add_input("greet", greet);
 	robot_reader.add_input("alarm", alarm);
 	robot_reader.add_input("left", turnLeft);
+	robot_reader.add_input("take_picture", take_picture);
 	robot_reader.add_input("turn_left", turnLeft);
 	robot_reader.add_input("right", turnRight);
 	robot_reader.add_input("turn_right", turnRight);
 
+	robot_reader.add_cb(confirmcmd);
+	
 	futex_manager.add_future(set_startup, 20);
 
 	while (robot_reader.poll_updates() != -1){

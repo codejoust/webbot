@@ -6,9 +6,27 @@ function status(status){
 }
 
 function alert(text){
-	$('#header').html(text).css('font-size','10px').show().animate({'font-50px': 'size'}, 1000, function(){
+	$('#header').html(text).css('font-size','15px').show().animate({'font-50px': 'size'}, 1000, function(){
 		$(this).hide();
 	})
+}
+
+function show_picture(path){
+	$('#pic').attr('src',path).show('slow');
+	setTimeout(function(){
+		$('#pic').fadeOut('slow');
+	},6300);
+}
+
+function display_pic(){
+	show_picture('pics/robot.jpg');
+}
+
+function status(text){
+	$('#status').hide().text('Running command: ' + text).show('slow');
+	setTimeout(function(){
+		$('#status').fadeOut('fast');
+	},1300);
 }
 
 function flashy(){
@@ -26,14 +44,13 @@ function play_audio(url){
 	}
 	snd.src = url;
 	snd.load();
-	
-	//snd.currentTime = 0;
 	snd.play();
 }
 
 function greet(text){
 	//text = 'Hello-Im-' + text;
     play_audio('http://translate.google.com/translate_tts?tl=en&q='+text);
+    alert(text);
 }
 
 function speak(text){
@@ -47,7 +64,9 @@ function play_sound(type){
 		click: 'click.wav',
 		tstorm: 'tstorm.mp3',
 		macup: 'Startup1.wav',
-		fart1: 'fart-2.wav'
+		fart1: 'fart-2.wav',
+		r2d21: 'R2-beeping-more.mp3',
+		r2d22: 'R2-sounding-sassy.mp3'
 	}
 	if (files_mapping[type]){
 		status("playing sound " + type);
